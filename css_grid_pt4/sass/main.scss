@@ -1,0 +1,68 @@
+.container {
+  width: 1000px;
+  margin: 30px auto;
+  background-color: #ddd;
+
+  display: grid;
+  // Using min-content and max-content
+  // grid-template-rows: repeat(2, 150px);
+  // grid-template-columns: min-content 1fr 1fr min-content;
+    //max-content: be just wide enough to cover the max-content in its column row
+  // grid-template-rows: repeat(2, minmax(150px, min-content));
+    // grid rows should be at least 150px, and as large as it needs to be to prevent overflow
+
+  // using minmaxx function
+  // width: 90%;
+  // grid-template-rows: repeat(2, minmax(150px, min-content));
+  // grid-template-columns: minmax(200px, 50%) repeat(3, 1fr);
+    // first col needs to be btw 200px and 50% of window width; rest of them divide evenly;
+    // when the window is wide enough; be 300px; when the spacing gets tight
+    // allow to be squeezed, but no more than 200px
+
+  // Using auto-fill and auto-fit
+
+  grid-template-rows: repeat(2, minmax(150px, min-content));
+  // grid-template-columns: repeat(auto-fit, 100px);
+
+  // PROBABLY THE MOST IMPORTANT RESPONSIVE LAYOUT GRID MAGIC HERE
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    // our bread and butter adaptive screen width magic
+    // completely responsive layout
+    // when things are spacey... every track takes up a fractional amount
+    // as soon as there isn't enough room for all tracks to have 200px width...
+    // ... create a new row to accomodate the width requirement
+  grid-auto-rows: 150px;
+
+  width: 90%;
+
+    // auto-fill:
+      // it knows the width of the container is 1000px
+      // so it creates 10 column tracks
+      // fills 8/10 of them with our items, then 2 placeholder tracks
+      // all at 100px each
+
+    // auto-fit:
+      // same as above, but collapses the last two tracks;
+      // so more like 8 tracks...
+      // invisible to the naked non-firefox eye
+      // usually the winner here
+
+
+  .item {
+    padding: 10px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 30px;
+    background-color: orangered;
+
+    &--1 { background-color: orangered; }
+    &--2 { background-color: yellowgreen; }
+    &--3 { background-color: blueviolet; }
+    &--4 { background-color: palevioletred; }
+    &--5 { background-color: royalblue; }
+    &--6 { background-color: goldenrod; }
+    &--7 { background-color: crimson; }
+    &--8 { background-color: darkslategray; }
+
+  }
+}
